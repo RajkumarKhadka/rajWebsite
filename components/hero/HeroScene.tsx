@@ -4,13 +4,15 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+const PARTICLE_COUNT = isMobile ? 400 : 1500;
+
 function ParticleField() {
   const ref = useRef<THREE.Points>(null!);
-  const count = 1500;
 
   const { positions, colors } = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
+    const positions = new Float32Array(PARTICLE_COUNT * 3);
+    const colors = new Float32Array(PARTICLE_COUNT * 3);
 
     const accentColors = [
       new THREE.Color("#00D4FF"),
@@ -19,7 +21,7 @@ function ParticleField() {
       new THREE.Color("#F59E0B"),
     ];
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 30;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
@@ -44,13 +46,13 @@ function ParticleField() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
+          count={PARTICLE_COUNT}
           array={positions}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-color"
-          count={count}
+          count={PARTICLE_COUNT}
           array={colors}
           itemSize={3}
         />
@@ -105,12 +107,18 @@ export default function HeroScene() {
     <div className="absolute inset-0 z-0" aria-hidden="true">
       <Canvas
         camera={{ position: [0, 2, 8], fov: 60 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: !isMobile, alpha: true, powerPreference: "default" }}
+        dpr={[1, isMobile ? 1 : 2]}
         style={{ background: "transparent" }}
+        onCreated={({ gl }) => {
+          gl.domElement.addEventListener("webglcontextlost", (e) => {
+            e.preventDefault();
+          });
+        }}
       >
         <ambientLight intensity={0.5} />
         <ParticleField />
-        <GridLines />
+        {!isMobile && <GridLines />}
       </Canvas>
     </div>
   );

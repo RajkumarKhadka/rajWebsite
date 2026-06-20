@@ -1,8 +1,17 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useRef, useState } from "react";
+import { Component, ReactNode, useCallback, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
+
+class SceneErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
 
 // Dynamically import Three.js scene (SSR-safe)
 const HeroScene = dynamic(() => import("./HeroScene"), {
@@ -75,7 +84,9 @@ export default function Hero() {
       />
 
       {/* Three.js particles */}
-      <HeroScene />
+      <SceneErrorBoundary>
+        <HeroScene />
+      </SceneErrorBoundary>
 
       {/* Main content */}
       <HeroContent />
