@@ -2,9 +2,22 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects } from "@/lib/data/portfolio";
 
-const allCategories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
+interface Project {
+  id: string;
+  title: string;
+  client: string;
+  category: string;
+  description: string;
+  outcome: string;
+  tags: string[];
+  accent: "cyan" | "violet" | "emerald" | "gold";
+  year: string;
+}
+
+const projects: Project[] = [];
+
+const allCategories = ["All"];
 
 const accentText: Record<string, string> = {
   cyan: "#00D4FF",
