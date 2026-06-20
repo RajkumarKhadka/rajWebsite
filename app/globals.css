@@ -1,0 +1,500 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Clash Display — Variable font (all weights 200–700 in one file) ── */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/assets/fonts/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+       url('/assets/fonts/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Variable.woff') format('woff');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Individual weights as fallback ── */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/assets/fonts/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/assets/fonts/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/assets/fonts/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/assets/fonts/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Clash Display is now available as a named font family */
+  --font-clash-display: 'Clash Display', system-ui, sans-serif;
+  /* Deep Space Intelligence — Color Tokens */
+  --bg-primary: #0A0F1E;
+  --bg-secondary: #111827;
+  --bg-surface: #1E293B;
+  --bg-elevated: #263347;
+
+  --accent-cyan: #00D4FF;
+  --accent-violet: #7C3AED;
+  --accent-emerald: #10B981;
+  --accent-gold: #F59E0B;
+
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+
+  --border-subtle: #1F2937;
+  --border-medium: #374151;
+
+  --card-bg: rgba(30, 41, 59, 0.45);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --section-alt: rgba(17, 24, 39, 0.3);
+
+  /* Glow effects */
+  --glow-cyan: rgba(0, 212, 255, 0.2);
+  --glow-violet: rgba(124, 58, 237, 0.2);
+  --glow-emerald: rgba(16, 185, 129, 0.2);
+  --glow-gold: rgba(245, 158, 11, 0.2);
+
+  /* Surface tokens used by components */
+  --surface-card: rgba(30, 41, 59, 0.5);
+  --surface-card-hover: rgba(30, 41, 59, 0.9);
+  --surface-card-border: rgba(255, 255, 255, 0.06);
+  --marquee-fade: #0A0F1E;
+  --hero-bg-start: #0A0F1E;
+  --hero-bg-end: #111827;
+}
+
+/* ── LIGHT MODE ── */
+[data-theme="light"] {
+  --bg-primary: #F5F7FA;
+  --bg-secondary: #EEF2F7;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #E8EDF5;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+
+  --border-subtle: #E2E8F0;
+  --border-medium: #CBD5E1;
+
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(0, 0, 0, 0.07);
+  --section-alt: rgba(238, 242, 247, 0.8);
+
+  /* Surface tokens — light overrides */
+  --surface-card: rgba(255, 255, 255, 0.95);
+  --surface-card-hover: rgba(255, 255, 255, 1);
+  --surface-card-border: rgba(0, 0, 0, 0.08);
+  --marquee-fade: #F5F7FA;
+  --hero-bg-start: #EBF4FF;
+  --hero-bg-end: #F5F7FA;
+
+  color-scheme: light;
+}
+
+/* Light mode structural overrides */
+[data-theme="light"] body {
+  background-color: #F5F7FA;
+  color: #0F172A;
+}
+
+[data-theme="light"] #home {
+  background: linear-gradient(180deg, #EBF4FF 0%, #F0F7FF 50%, #F5F7FA 100%) !important;
+}
+
+[data-theme="light"] #home .absolute.inset-0[style*="radial-gradient"] {
+  opacity: 0.4;
+}
+
+/* Navbar light */
+[data-theme="light"] header {
+  border-bottom-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+[data-theme="light"] header.scrolled-nav {
+  background: rgba(245, 247, 250, 0.92) !important;
+}
+
+/* Section backgrounds */
+[data-theme="light"] #services {
+  background: #F5F7FA !important;
+}
+
+[data-theme="light"] #skills {
+  background: #EEF2F7 !important;
+}
+
+[data-theme="light"] #contact {
+  background: #F5F7FA !important;
+}
+
+[data-theme="light"] #about {
+  background: #EEF2F7 !important;
+}
+
+/* Text colour overrides */
+[data-theme="light"] .text-white {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #0F172A;
+}
+
+/* Cards and glass surfaces */
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 0, 0, 0.07) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Marquee strip */
+[data-theme="light"] .marquee-strip {
+  background: #E8EDF5 !important;
+  border-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Stats bar */
+[data-theme="light"] .stats-bar {
+  background: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Footer */
+[data-theme="light"] footer {
+  background: #EEF2F7 !important;
+  border-top-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+[data-theme="light"] footer p,
+[data-theme="light"] footer span,
+[data-theme="light"] footer a {
+  color: #475569;
+}
+
+[data-theme="light"] footer .text-white {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] footer a:hover {
+  color: #6557F0 !important;
+}
+
+/* Scrollbar light */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #EEF2F7;
+}
+
+/* Hero text adjustments */
+[data-theme="light"] #home .text-\[\#9CA3AF\],
+[data-theme="light"] #home .text-\[\#6B7280\] {
+  color: #475569 !important;
+}
+
+/* ── Secondary / muted text colours ── */
+[data-theme="light"] .text-\[\#9CA3AF\] { color: #475569 !important; }
+[data-theme="light"] .text-\[\#6B7280\] { color: #64748B !important; }
+[data-theme="light"] .text-\[\#4B5563\] { color: #94A3B8 !important; }
+
+/* ── Stats bar ── */
+[data-theme="light"] .bg-\[\#111827\] { background-color: #EEF2F7 !important; }
+[data-theme="light"] .border-white\/5 { border-color: rgba(0,0,0,0.07) !important; }
+
+/* ── Navbar scrolled + mobile menu ── */
+[data-theme="light"] .bg-\[\#0A0F1E\]\/90 {
+  background-color: rgba(245,247,250,0.92) !important;
+}
+[data-theme="light"] .bg-\[\#0D1224\]\/95 {
+  background-color: rgba(245,247,250,0.96) !important;
+}
+[data-theme="light"] .border-white\/\[0\.06\] { border-color: rgba(0,0,0,0.06) !important; }
+[data-theme="light"] .border-white\/\[0\.08\] { border-color: rgba(0,0,0,0.08) !important; }
+[data-theme="light"] .shadow-\[0_1px_40px_rgba\(0\,0\,0\,0\.4\)\] {
+  box-shadow: 0 1px 24px rgba(0,0,0,0.08) !important;
+}
+
+/* ── Marquee border ── */
+[data-theme="light"] .border-white\/\[0\.04\] { border-color: rgba(0,0,0,0.05) !important; }
+
+/* ── About section timeline dot ── */
+[data-theme="light"] .border-\[\#0A0F1E\] { border-color: #F5F7FA !important; }
+
+/* ── Form inputs ── */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background: rgba(0,0,0,0.03) !important;
+  border-color: rgba(0,0,0,0.12) !important;
+  color: #0F172A !important;
+}
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+  background: rgba(0,212,255,0.05) !important;
+  border-color: rgba(0,212,255,0.4) !important;
+}
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #94A3B8 !important;
+}
+[data-theme="light"] select option {
+  background: #ffffff;
+  color: #0F172A;
+}
+
+/* ── Contact section card text ── */
+[data-theme="light"] #contact .text-white { color: #0F172A !important; }
+[data-theme="light"] #contact label { color: #475569 !important; }
+
+/* ── Portfolio section background ── */
+[data-theme="light"] #portfolio {
+  background: #EEF2F7 !important;
+}
+
+/* ── Testimonials section background ── */
+[data-theme="light"] #testimonials {
+  background: #F5F7FA !important;
+}
+
+/* ── Card shadow in light mode ── */
+[data-theme="light"] [style*="var(--surface-card)"] {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06) !important;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 212, 255, 0.25);
+  color: var(--text-primary);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Gradient text utility */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #10B981 0%, #00D4FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+/* Glow border utility classes */
+.border-glow-cyan {
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2), inset 0 0 20px rgba(0, 212, 255, 0.02);
+}
+.border-glow-violet {
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), inset 0 0 20px rgba(124, 58, 237, 0.02);
+}
+.border-glow-emerald {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2), inset 0 0 20px rgba(16, 185, 129, 0.02);
+}
+.border-glow-gold {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2), inset 0 0 20px rgba(245, 158, 11, 0.02);
+}
+
+/* Section utility */
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 8rem 2rem;
+  }
+}
+
+/* Animated grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Professional button hover: text slides up, copy slides in from below ── */
+.btn-slide {
+  position: relative;
+  overflow: hidden;
+}
+.btn-slide .btn-text {
+  display: inline-flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-slide .btn-text span {
+  display: block;
+  line-height: 1;
+}
+.btn-slide .btn-text span:last-child {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.btn-slide:hover .btn-text {
+  transform: translateY(-100%);
+}
+
+/* ── Refined project card hover ── */
+.project-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ── Section label style (// prefix) ── */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ── Fluid section headings ── */
+.heading-xl {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+.heading-lg {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* ── 3D perspective helper ── */
+.perspective-card {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+/* Code font */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
