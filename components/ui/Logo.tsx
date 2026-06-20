@@ -3,42 +3,52 @@ export default function Logo({ size = 44 }: { size?: number }) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 44 44"
+      viewBox="0 0 200 200"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Raj Kumar Khadka"
     >
       <defs>
-        <linearGradient id="rk-slash" x1="22" y1="22" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#FF9A3C" />
-          <stop offset="100%" stopColor="#C85F00" />
+        <radialGradient id="logo-bg" cx="40%" cy="35%" r="70%">
+          <stop offset="0%" stopColor="#1E1050" />
+          <stop offset="100%" stopColor="#0A0F1E" />
+        </radialGradient>
+        <linearGradient id="logo-ring" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#00D4FF" />
+          <stop offset="50%" stopColor="#A855F7" />
+          <stop offset="100%" stopColor="#10B981" />
+        </linearGradient>
+        <linearGradient id="logo-mark" x1="32" y1="40" x2="168" y2="160" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#E8F4FF" />
         </linearGradient>
       </defs>
 
-      {/* Background */}
-      <rect width="44" height="44" rx="10" fill="#0A0F1E" />
+      {/* Background circle */}
+      <circle cx="100" cy="100" r="100" fill="url(#logo-bg)" />
 
-      {/* Central spine — right side of Я, left side of K */}
-      <line x1="22" y1="5" x2="22" y2="39" stroke="white" strokeWidth="6" strokeLinecap="round" />
+      {/* Outer glow ring */}
+      <circle cx="100" cy="100" r="94" fill="none" stroke="url(#logo-ring)" strokeWidth="4" opacity="0.25" />
 
-      {/* Я — bowl arcs from spine-top leftward and back to spine-mid */}
+      {/* Sharp border ring */}
+      <circle cx="100" cy="100" r="93" fill="none" stroke="url(#logo-ring)" strokeWidth="1.5" opacity="0.9" />
+
+      {/* R — left vertical bar (slight italic lean) */}
+      <polygon points="32,40 55,40 58,160 35,160" fill="url(#logo-mark)" />
+
+      {/* R — bowl with counter cutout (evenodd = stroke effect) */}
       <path
-        d="M 22 5 Q 3 5 3 14 Q 3 23 22 23"
-        stroke="white"
-        strokeWidth="5.5"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        fillRule="evenodd"
+        fill="url(#logo-mark)"
+        d="M55,40 L115,40 L138,58 L138,88 L115,105 L55,105 Z
+           M72,57 L110,57 L124,66 L124,80 L110,88 L72,88 Z"
       />
 
-      {/* Я — leg: spine-mid to lower-left */}
-      <line x1="22" y1="23" x2="5" y2="39" stroke="white" strokeWidth="5.5" strokeLinecap="round" />
+      {/* K — upper arm (diagonal to upper-right) */}
+      <polygon points="85,105 103,105 168,40 150,40" fill="url(#logo-mark)" />
 
-      {/* K — upper arm: spine-mid to upper-right */}
-      <line x1="22" y1="23" x2="40" y2="5" stroke="white" strokeWidth="5.5" strokeLinecap="round" />
-
-      {/* K — lower slash arm: spine-mid to lower-right (orange) */}
-      <line x1="22" y1="23" x2="40" y2="39" stroke="url(#rk-slash)" strokeWidth="5.5" strokeLinecap="round" />
+      {/* K — lower arm (diagonal to lower-right) */}
+      <polygon points="100,105 115,105 147,160 132,160" fill="url(#logo-mark)" />
     </svg>
   );
 }
