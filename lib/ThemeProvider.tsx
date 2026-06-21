@@ -13,7 +13,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const saved = (localStorage.getItem("rp-theme") as Theme) || "dark";
+    const saved = (localStorage.getItem("rkk-theme") as Theme) || "dark";
     setTheme(saved);
     document.documentElement.setAttribute("data-theme", saved);
   }, []);
@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const toggle = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    localStorage.setItem("rp-theme", next);
+    localStorage.setItem("rkk-theme", next);
     document.documentElement.setAttribute("data-theme", next);
   };
 

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Hero3DCard from "./Hero3DCard";
 import AnimatedName from "./AnimatedName";
-import { useTheme } from "@/lib/ThemeProvider";
 
 const roles = [
   "IT Infrastructure and Platform Engineer",
@@ -45,8 +44,6 @@ function TypewriterText() {
 }
 
 export default function HeroContent() {
-  useTheme();
-
   return (
     <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-16 pb-8 md:pt-20 md:pb-12">
 
