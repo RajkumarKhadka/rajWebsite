@@ -5,7 +5,7 @@ export default function Logo({ size = 44 }: { size?: number }) {
       width={size}
       height={size}
       alt="Raj Kumar Khadka"
-
+      style={{ display: "block", borderRadius: "50%" }}
     />
   );
 }
